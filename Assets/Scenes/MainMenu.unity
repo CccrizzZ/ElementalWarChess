@@ -1040,7 +1040,10 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Click on land to move to that land
 
-    Click on enemy to attack'
+    Click on enemy to attack
+
+    use
+    keyboard A and D to rotate camera'
 --- !u!222 &594403933
 CanvasRenderer:
   m_ObjectHideFlags: 0
