@@ -11,6 +11,7 @@ TagManager:
   - PlayerTurnIndicator
   - AudioManager
   - HealthBar
+  - BMGManager
   layers:
   - Default
   - TransparentFX

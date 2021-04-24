@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class BGMManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
-    }
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("BMGManager");
 
-    // Update is called once per frame
-    void Update()
-    {
+        if (objects.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
         
+        DontDestroyOnLoad(this.gameObject);
+
     }
 }

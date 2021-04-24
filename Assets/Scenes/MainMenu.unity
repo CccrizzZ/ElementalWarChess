@@ -349,7 +349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &117206626
 RectTransform:
   m_ObjectHideFlags: 0
@@ -920,7 +920,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1842763005}
         m_TargetAssemblyTypeName: ButtonScript, NewAssembly
-        m_MethodName: CreditButton
+        m_MethodName: HowtoPlayPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1740,7 +1740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1263657211
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2385,7 +2385,7 @@ GameObject:
   - component: {fileID: 1972786691}
   m_Layer: 0
   m_Name: BGMManager
-  m_TagString: Untagged
+  m_TagString: BMGManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2416,7 +2416,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 69b277be851518945b5c9ce21361632c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.453
   m_Pitch: 1
   Loop: 0
   Mute: 0

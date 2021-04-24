@@ -291,7 +291,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: cf56c9cb2202fd44897ea93066b19db3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -769,6 +769,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CreditPanel: {fileID: 0}
+  HowToPlayPanel: {fileID: 0}
   PausePanel: {fileID: 444452519}
 --- !u!1 &638209393
 GameObject:
