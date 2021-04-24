@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Enemy
   - Land
+  - Grid
+  - EnemyTurnIndicator
+  - PlayerTurnIndicator
+  - AudioManager
+  - HealthBar
   layers:
   - Default
   - TransparentFX

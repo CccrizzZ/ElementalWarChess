@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7403871923626513760}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,3 +54,4 @@ MonoBehaviour:
   - {fileID: 2100000, guid: efa618533c44e07419a5e074d8818d2c, type: 2}
   - {fileID: 2100000, guid: 0a3f98ee9513f384797fb1ebd8824239, type: 2}
   - {fileID: 2100000, guid: c6f941f788699a2488d95eeec92517cb, type: 2}
+  LandArray: []

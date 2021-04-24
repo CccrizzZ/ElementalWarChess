@@ -37,11 +37,11 @@ public class LandScript : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        print(other.gameObject.name);
+        // print(other.gameObject.name);
         if (!other.gameObject.CompareTag("Player") && !other.gameObject.CompareTag("Enemy")) return;
 
         WhosStandingOnMe = other.gameObject.tag;
-        print(WhosStandingOnMe);
+        // print(WhosStandingOnMe);
 
     }
 
@@ -51,6 +51,30 @@ public class LandScript : MonoBehaviour
         if (!other.gameObject.CompareTag("Player") && !other.gameObject.CompareTag("Enemy")) return;
 
         WhosStandingOnMe = "";
-        print("TagReset");
+        // print("TagReset");
+    }
+
+
+
+    public GameObject GetTargetNearByLand(Vector3 forward)
+    {
+        var ray = new Ray(transform.position + new Vector3(0, 0.1f, 0), forward);
+        RaycastHit hit;
+
+        // get the tile near it
+        if (Physics.Raycast(ray, out hit, 1.1f))
+        {
+            // print(hit.transform.gameObject.name);
+            
+            if (hit.transform.gameObject.CompareTag("Land"))
+            {
+                // print(hit.transform.gameObject.GetComponent<LandScript>().LandMaterial);
+
+                return hit.transform.gameObject;
+
+            }
+        }
+        return null;
+
     }
 }

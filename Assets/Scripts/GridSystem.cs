@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class GridSystem : MonoBehaviour
 {
@@ -15,6 +17,10 @@ public class GridSystem : MonoBehaviour
 
 
     GameObject PlayerRef;
+
+    GameObject PlayerTurnIndicator;
+    GameObject EnemyTurnIndicator;
+
 
 
     void Awake()
@@ -44,6 +50,12 @@ public class GridSystem : MonoBehaviour
 
     void Start()
     {
+        PlayerTurnIndicator = GameObject.FindGameObjectWithTag("PlayerTurnIndicator");
+        EnemyTurnIndicator = GameObject.FindGameObjectWithTag("EnemyTurnIndicator");
+
+        PlayerTurnIndicator.SetActive(true);
+        EnemyTurnIndicator.SetActive(false);
+
         // spawn player
         SpawnPlayer();
 
@@ -52,21 +64,39 @@ public class GridSystem : MonoBehaviour
 
     }
 
+    
 
     void SpawnEnemy()
     {
-        var ERef = GameObject.FindGameObjectWithTag("Enemy");
+        var ERefList = GameObject.FindGameObjectsWithTag("Enemy");
 
+        foreach (var item in ERefList)
+        {
+            PositionEntityOnGrid(item);
+        }
+    
+    }
+
+
+    void PositionEntityOnGrid(GameObject entity)
+    {
         var RandomLandScript = LandArray[Random.Range(0, LandArray.Count)].GetComponent<LandScript>();
 
         // set enemy position to random land if no player or enemy on it
         if (RandomLandScript.WhosStandingOnMe == "")
         {
-            ERef.transform.position = RandomLandScript.transform.position + new Vector3(0,0.5f,0);
+            entity.transform.position = RandomLandScript.transform.position + new Vector3(0,0.5f,0);
+            entity.GetComponent<EnemyController>().CurrentLand = RandomLandScript;
         }
-        
-    
+        else
+        {
+            entity.transform.position = RandomLandScript.GetTargetNearByLand(entity.transform.forward).transform.position + new Vector3(0,0.5f,0);
+            
+        }
     }
+
+
+
 
     void SpawnPlayer()
     {
@@ -85,6 +115,56 @@ public class GridSystem : MonoBehaviour
 
             // set player place to center point of rando land cube
             PlayerRef.transform.position = RandomLandScript.transform.position + new Vector3(0,0.5f,0);
+        }
+    }
+
+
+
+
+
+    // goto players turn
+    public void PlayerTurn()
+    {
+        StartCoroutine(CheckIfWin());
+        // print("Players Turn..........");
+
+        PlayerTurnIndicator.SetActive(true);
+        EnemyTurnIndicator.SetActive(false);
+
+        // active player
+        var PController = PlayerRef.GetComponent<PlayerController>();
+        PController.PlayerTurn = true;
+        PController.AlreadyMoved = false;
+        
+    }
+
+    // goto enemy's turn
+    public void EnemyTurn()
+    {
+        StartCoroutine(CheckIfWin());
+        // print("Enemies Turn..........");
+
+        PlayerTurnIndicator.SetActive(false);
+        EnemyTurnIndicator.SetActive(true);
+
+        var AllEnemy = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (var item in AllEnemy)
+        {
+            item.GetComponent<EnemyController>().RoundEvent();
+        }
+
+    }
+
+
+
+
+    IEnumerator CheckIfWin()
+    {
+        yield return new WaitForSeconds(4);
+
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length <= 0)
+        {
+            SceneManager.LoadScene("WinScene");
         }
     }
 }
